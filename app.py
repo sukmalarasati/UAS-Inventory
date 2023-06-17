@@ -3,12 +3,13 @@ from PyQt6 import uic
 import sys
 import mysql.connector
 from barang_window import BarangWindow
+from ui import APP_UI
 
 class MyApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        uic.loadUi('app.ui', self)
+        uic.loadUi(APP_UI, self)
 
         self.login_button = self.findChild(QPushButton, 'login_button')
         self.login_button.clicked.connect(self.login)

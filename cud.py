@@ -1,12 +1,13 @@
 from PyQt6.QtWidgets import QDialog
 from PyQt6 import QtGui, uic
 import mysql.connector
+from ui import CUD_UI
 
 class CudDialog(QDialog):
     def __init__(self, db, cursor, kode_barang=None):
         super().__init__()
 
-        uic.loadUi('cud.ui', self)
+        uic.loadUi(CUD_UI, self)
 
         self.db = db
         self.cursor = cursor

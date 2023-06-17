@@ -3,12 +3,13 @@ from PyQt6 import uic
 from cud import CudDialog
 import mysql.connector
 import pandas as pd
+from ui import BARANG_WINDOW_UI
 
 class BarangWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        uic.loadUi('barang_window.ui', self)
+        uic.loadUi(BARANG_WINDOW_UI, self)
 
         self.db = mysql.connector.connect(
             host="localhost",
