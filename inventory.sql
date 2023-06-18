@@ -1,7 +1,7 @@
-DROP DATABASE inventory;
-CREATE DATABASE inventory;
+-- DROP DATABASE inventory;
+-- CREATE DATABASE inventory;
 
-USE inventory;
+-- USE inventory;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,

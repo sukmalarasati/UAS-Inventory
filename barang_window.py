@@ -13,10 +13,10 @@ class BarangWindow(QMainWindow):
         self.setWindowIcon(QtGui.QIcon(ui.STOCK_ICO()))
 
         self.db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="inventory"
+            host=ui.HOST,
+            user=ui.USERNAME,
+            password=ui.PASSWORD,
+            database=ui.DATABASE
         )
         self.cursor = self.db.cursor()
 

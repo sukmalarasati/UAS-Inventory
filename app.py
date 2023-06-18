@@ -23,10 +23,10 @@ class MyApp(QMainWindow):
         password = self.password_field.text()
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="inventory"
+            host=ui.HOST,
+            user=ui.USERNAME,
+            password=ui.PASSWORD,
+            database=ui.DATABASE
         )
         cursor = db.cursor()
         cursor.execute("SELECT * FROM users WHERE username=%s AND password=%s", (username, password,))
