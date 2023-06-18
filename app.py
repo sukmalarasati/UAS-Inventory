@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit, QMessageBox
-from PyQt6 import uic
+from PyQt6 import uic, QtGui
 import sys
 import mysql.connector
 from barang_window import BarangWindow
-from ui import APP_UI
+import ui
 
 class MyApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        uic.loadUi(APP_UI, self)
+        uic.loadUi(ui.APP_UI(), self)
+        self.setWindowIcon(QtGui.QIcon(ui.STOCK_ICO()))
 
         self.login_button = self.findChild(QPushButton, 'login_button')
         self.login_button.clicked.connect(self.login)

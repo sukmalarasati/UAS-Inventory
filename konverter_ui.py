@@ -2,18 +2,27 @@ import glob
 
 data = []
 files = []
-for i in glob.glob("*.ui"):
-    file = open(i, "r")
+for i in glob.glob("*.ui") + glob.glob("*.ico"):
+    file = open(i, "rb")
     data.append(file.read())
     file.close()
 
-    files.append(i.replace(".", "_").replace("/", "_").replace("\\", "_").upper())
+    if i.endswith(".ui"):
+        files.append([i.replace(".", "_").replace("/", "_").replace("\\", "_").upper(), i])
+    else:
+        files.append((i.replace(".", "_").replace("/", "_").replace("\\", "_").upper(), i))
 
 
-payloads = ["## Dibuat oleh konverter_ui.py ##\nimport io\n"]
+payloads = ["## Dibuat oleh konverter_ui.py ##\nimport io, os\n"]
 
 for d,f in zip(data, files):
-    payloads.append(f"{f} = io.BytesIO({repr(d.encode('utf8'))})")
+    if type(f) is list:
+        payloads.append(f"{f[0]} = lambda: io.BytesIO({repr(d)})")
+        print(f"{f[1]} -> ui.{f[0]}()")
+    else:
+        vn, fn = f
+        payloads.append(f"""def {vn}():\n  try:\n    file = open("{fn}", "wb")\n    file.write({repr(d)})\n    file.flush()\n    file.close()\n  except:\n    pass\n  return "{fn}"\n""")
+        print(f"{f[1]} -> ui.{f[0]}()")
 
 file = open("ui.py", "w")
 file.write("\n".join(payloads))

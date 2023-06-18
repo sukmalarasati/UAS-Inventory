@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QPushButton, QInputDialog, QLineEdit, QMessageBox, QFileDialog
-from PyQt6 import uic
+from PyQt6 import uic, QtGui
 from cud import CudDialog
 import mysql.connector
 import pandas as pd
-from ui import BARANG_WINDOW_UI
+import ui
 
 class BarangWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        uic.loadUi(BARANG_WINDOW_UI, self)
+        uic.loadUi(ui.BARANG_WINDOW_UI(), self)
+        self.setWindowIcon(QtGui.QIcon(ui.STOCK_ICO()))
 
         self.db = mysql.connector.connect(
             host="localhost",
@@ -35,7 +36,7 @@ class BarangWindow(QMainWindow):
         self.load_data()
 
     def load_data(self):
-        self.cursor.execute("SELECT * FROM barang")
+        self.cursor.execute("SELECT * FROM barang ORDER BY nama_barang")
         result = self.cursor.fetchall()
 
         self.table.setRowCount(0)
