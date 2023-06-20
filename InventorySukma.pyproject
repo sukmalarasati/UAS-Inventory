@@ -1,0 +1,16 @@
+{
+    "files": [
+        "app.py",
+        "barang_window.py",
+        "cud.py",
+        "konverter_ui.py",
+        "ui.py",
+        "app.ui",
+        "barang_window.ui",
+        "cud.ui",
+        "requirements.txt",
+        "inventory.sql",
+        ".gitignore",
+        "stock.ico"
+    ]
+}
