@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QPushButton, QInputDialog, QLineEdit, QMessageBox, QFileDialog
+from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QPushButton, QInputDialog, QLineEdit, QMessageBox, QFileDialog, QHeaderView
 from PyQt6 import uic, QtGui
 from cud import CudDialog
 import mysql.connector
@@ -44,6 +44,7 @@ class BarangWindow(QMainWindow):
         if not self.is_set_header:
             self.table.setColumnCount(5)
             self.table.setHorizontalHeaderLabels(['Kode Barang', 'Nama Barang', 'Jumlah Barang', 'Harga Barang', 'Keuntungan'])
+            self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
             self.is_set_header = True
 
         for i, row in enumerate(result):
